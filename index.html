@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo-list</title>
+</head>
+<body>
+    
+    <header>
+        <h1 class="title">Список задач</h1>
+    </header>
+    <section class="new-task">
+        <h2 class="new-task-title">Новая задача</h2>
+        <article>
+            <input type="text" class="new-task-text" placeholder="Напишите что-нибудь...">
+            <button class="add-new-task">+ Добавить</button>
+        </article>
+        
+    </section>
+    <section class="container">
+        <article class="tasks-container" id="backlog">
+            <p class="tasks-title">Бэклог</p>
+            <article class="task-list">
+                <ul>
+                    <li class="task">Выучить JS</li>
+                    <li class="task">Выучить React</li>
+                    <li class="task">Сделать домашку</li>
+                </ul>
+            </article>
+        </article>
+        <article class="tasks-container" id="in-process">
+            <p class="tasks-title">В процессе</p>
+            <article class="task-list">
+                <ul>
+                    <li class="task">Выпить смузи</li>
+                    <li class="task">Попить воды</li>
+                </ul>
+            </article>
+        </article>
+        <article class="tasks-container" id="done">
+            <p class="tasks-title">Готово</p>
+            <article class="task-list">
+                <ul>
+                    <li class="task">Позвонить маме</li>
+                    <li class="task">Погладить кота</li>
+                </ul>
+            </article>
+        </article>
+        <article class="tasks-container" id="bag">
+            <p class="tasks-title">Корзина</p>
+            <article class="task-list">
+                <ul>
+                    <li class="task">Сходить погулять</li>
+                    <li class="task">Прочитать Войну и Мир</li>
+                </ul>
+            </article>
+        </article>
+    </section>
+    <footer class="footer">
+        <button class="clear-button"> × Очистить</button>
+    </footer>
+</body>
+</html>

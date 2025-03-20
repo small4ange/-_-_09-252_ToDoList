@@ -1,0 +1,166 @@
+html,body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(238, 244, 251, 1);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: rgba(47, 128, 237, 1);
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    padding: 1px 20px;
+    height: 40px;
+    width: 100%;
+    text-align: start;
+    margin-bottom: 20px;
+}
+
+.new-task {
+    background-color: white;
+    border-radius: 20px;
+    height: 150px;
+    width: 500px;
+    padding: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.new-task article {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.new-task-title {
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    padding: 20px 0px;
+}
+.new-task-text {
+    display:flex;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: rgb(190, 190, 190);
+    height: 40px;
+    width: 300px;
+    padding: 5px;
+    margin: 5px;
+}
+.add-new-task{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: rgba(47, 128, 237, 1);
+    background-color: rgba(47, 128, 237, 1);
+    color: white;
+    margin: 5px;
+    height: 50px;
+    width: 40%;
+    padding: 5px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    height: auto;
+    width: 100%;
+}
+.tasks-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+}
+
+.tasks-title {
+    background-color: white;
+    border-radius: 10px;
+    height: 20px;
+    width: auto;
+    text-align: start;
+    padding:10px 15px;
+    margin-bottom: 10px;
+}
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+.task {
+    padding: 7px 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 7px;
+    border-left: 10px solid red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    height: 20px;
+}
+.footer {
+    display:flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.clear-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: rgba(201, 102, 108, 1);
+    height: 50px;
+    width: 150px;
+    padding: 5px;
+    color: white;
+    margin:5px;
+}
+
+#backlog .tasks-title {
+    background-color: rgba(228, 229, 230, 1);
+    color:rgba(149, 150, 149, 1);
+}
+#in-process .tasks-title {
+    background-color: rgba(214, 231, 255, 1);
+    color:rgba(95, 150, 240, 1);
+}
+#done .tasks-title {
+    background-color: rgba(215, 249, 224, 1);
+    color:rgba(146, 208, 172, 1);
+}
+#bag .tasks-title {
+    background-color: rgba(251, 227, 227, 1);
+    color:rgba(214, 137, 138, 1);
+}
+
+#backlog .task {
+    border-left: 10px solid rgba(228, 229, 230, 1);
+}
+#in-process .task {
+    border-left: 10px solid rgba(214, 231, 255, 1);
+}
+#done .task {
+    border-left: 10px solid rgba(215, 249, 224, 1);
+}
+#bag .task {
+    border-left: 10px solid rgba(251, 227, 227, 1);
+}
