@@ -31,25 +31,24 @@ export default class TasksBoardPresenter {
     }
     #renderTasksList() {
         Object.entries(Status).forEach(([key,status]) => {
-            if(Status[key] === `basket`) {
-                return;
+            //console.log(status, StatusLabel[status]);
+            const taskListComponent = new TaskListComponent({
+                status_en: status, 
+                status_ru: StatusLabel[status]
+            });
+
+            render(taskListComponent, this.#tasksBoardComponent.element); // отрисовка .tasks-container
+
+            const boardStatusTasks = this.#boardTasks.filter(task => task.status === status); // достаем все задачи этого списка
+            if(boardStatusTasks.length === 0) {
+                this.#renderEmptyTask(taskListComponent.element);
             } else {
-                //console.log(status, StatusLabel[status]);
-                const taskListComponent = new TaskListComponent({
-                    status_en: status, 
-                    status_ru: StatusLabel[status]
+                boardStatusTasks.forEach((task) => {
+                    this.#renderTask(task, taskListComponent.element);
                 });
-
-                render(taskListComponent, this.#tasksBoardComponent.element); // отрисовка .tasks-container
-
-                const boardStatusTasks = this.#boardTasks.filter(task => task.status === status); // достаем все задачи этого списка
-                if(boardStatusTasks.length === 0) {
-                    this.#renderEmptyTask(taskListComponent.element);
-                } else {
-                    boardStatusTasks.forEach((task) => {
-                        this.#renderTask(task, taskListComponent.element);
-                    });
-                }
+            }
+            if(status === `basket`){
+                render(new ClearButtonComponent(), taskListComponent.element);
             }
         });
     }
@@ -76,7 +75,6 @@ export default class TasksBoardPresenter {
     #renderBoard(){
         render(this.#tasksBoardComponent, this.#boardContainer); // отрисовка .task-board
         this.#renderTasksList();
-        this.#renderBasketList();
         
     }
 }
