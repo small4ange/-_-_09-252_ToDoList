@@ -16,11 +16,11 @@ export default class TasksBoardPresenter {
     constructor({boardContainer, tasksModel}) {
         this.#boardContainer = boardContainer;
         this.#tasksModel = tasksModel;
+        this.#tasksModel.addObserver(this.#handleModelChange.bind(this));
     }
 
     init() {
         this.#boardTasks = [...this.#tasksModel.tasks];
-        console.log(this.#boardTasks);
         this.#renderBoard();
     }
     #renderTask (task, container) {
@@ -30,8 +30,8 @@ export default class TasksBoardPresenter {
         render(new EmptyTaskComponent(), container);
     }
     #renderTasksList() {
+        this.#boardTasks = [...this.#tasksModel.tasks];
         Object.entries(Status).forEach(([key,status]) => {
-            //console.log(status, StatusLabel[status]);
             const taskListComponent = new TaskListComponent({
                 status_en: status, 
                 status_ru: StatusLabel[status]
@@ -48,28 +48,10 @@ export default class TasksBoardPresenter {
                 });
             }
             if(status === `basket`){
-                render(new ClearButtonComponent(), taskListComponent.element);
+                const newClearButtonComponent = new ClearButtonComponent({onClick: this.#clearBasket.bind(this)});
+                render(newClearButtonComponent, taskListComponent.element);
             }
         });
-    }
-    #renderBasketList(){
-        //console.log(status, StatusLabel[status]);
-        const taskListComponent = new TaskListComponent({
-            status_en: Status.BASKET, 
-            status_ru: StatusLabel[Status.BASKET]
-        });
-
-        render(taskListComponent, this.#tasksBoardComponent.element); // отрисовка .tasks-container
-
-        const boardStatusTasks = this.#boardTasks.filter(task => task.status === Status.BASKET); // достаем все задачи этого списка
-        if(boardStatusTasks.length === 0) {
-            this.#renderEmptyTask(taskListComponent.element);
-        } else {
-            boardStatusTasks.forEach((task) => {
-                this.#renderTask(task, taskListComponent.element);
-            });
-        }
-        render(new ClearButtonComponent(), taskListComponent.element);
     }
 
     #renderBoard(){
@@ -77,4 +59,25 @@ export default class TasksBoardPresenter {
         this.#renderTasksList();
         
     }
+    createTask() {
+        const taskTitle = document.querySelector('.new-task-text').value.trim();
+        if(!taskTitle) {
+            return;
+        }
+        this.#tasksModel.addTask(taskTitle);
+
+        document.querySelector('.new-task-text').value = '';
+    }
+    #handleModelChange(){
+        this.#clearBoard();
+        this.#renderBoard();
+    }
+    #clearBoard() {
+        this.#tasksBoardComponent.element.innerHTML = '';
+    }
+    #clearBasket() {
+        console.log('clearBasket');
+        this.#tasksModel.deleteBasketTasks();
+    }
+
 }

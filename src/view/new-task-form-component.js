@@ -12,6 +12,18 @@ function createNewTaskFormComponentTemplate() {
 }
 
 export default class NewTaskFormComponent extends AbstractComponent {
+    #handleClick = null;
+
+    constructor({onClick}){
+        super();
+        this.#handleClick = onClick;
+        this.element.addEventListener('submit', this.#clickHandler);
+    }
+    #clickHandler = (evt) => {
+        evt.preventDefault();
+        this.#handleClick();
+    }
+
     get template() {
         return createNewTaskFormComponentTemplate();
     }
