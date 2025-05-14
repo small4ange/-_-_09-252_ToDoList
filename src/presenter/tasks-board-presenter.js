@@ -34,8 +34,9 @@ export default class TasksBoardPresenter {
         Object.entries(Status).forEach(([key,status]) => {
             const taskListComponent = new TaskListComponent({
                 status_en: status, 
-                status_ru: StatusLabel[status]
-            });
+                status_ru: StatusLabel[status],
+            },
+            this.#handleTaskDrop.bind(this));
 
             render(taskListComponent, this.#tasksBoardComponent.element); // отрисовка .tasks-container
 
@@ -53,11 +54,10 @@ export default class TasksBoardPresenter {
             }
         });
     }
-
+    
     #renderBoard(){
-        render(this.#tasksBoardComponent, this.#boardContainer); // отрисовка .task-board
+        render(this.#tasksBoardComponent, this.#boardContainer); // отрисовка .container в .task-board
         this.#renderTasksList();
-        
     }
     createTask() {
         const taskTitle = document.querySelector('.new-task-text').value.trim();
@@ -80,4 +80,7 @@ export default class TasksBoardPresenter {
         this.#tasksModel.deleteBasketTasks();
     }
 
+    #handleTaskDrop(taskId, newStatus, beforeTaskId = null) {
+        this.#tasksModel.updateTaskStatus(taskId, newStatus, beforeTaskId);
+    }
 }

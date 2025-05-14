@@ -34,5 +34,27 @@ export default class TasksModel {
     _notifyObservers(){
         this.#observers.forEach((observer) => observer());
     }
+    updateTaskStatus(taskId, newStatus, beforeTaskId = null) {
+        const taskIndex = this.#boardtasks.findIndex(task => task.id === taskId);
+        if(taskIndex === -1) return;
+        console.log("beforetaskid =", beforeTaskId);
+        console.log("task.index =", taskIndex);
+        const [task] = this.#boardtasks.splice(taskIndex, 1);
+        console.log("task =", task);
+
+        let insertIndex = this.#boardtasks.length; //в конец по умолчанию
+        if(beforeTaskId){
+            const beforeIndex = this.#boardtasks.findIndex(task => task.id === beforeTaskId);
+            if(beforeIndex != -1){
+                insertIndex = beforeIndex;
+            }
+        }
+        console.log("insertindex =", insertIndex);
+        task.status = newStatus;
+        this.#boardtasks.splice(insertIndex, 0, task);
+        console.log("boardtasks after =", this.#boardtasks);
+        this._notifyObservers();
+
+    }
 }
 

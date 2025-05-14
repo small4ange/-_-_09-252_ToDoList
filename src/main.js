@@ -1,13 +1,14 @@
 import HeaderComponent from "./view/header-component.js";
 import NewTaskFormComponent from "./view/new-task-form-component.js";
-
 import { render, RenderPosition } from "./framework/render.js";
 import TasksBoardPresenter from "./presenter/tasks-board-presenter.js";
 import TasksModel from './model/task-model.js';
 
 const bodyContainer = document.querySelector('.board-app');
 
-const mainContainer = document.querySelector('.add-task');
+const mainContainer = document.querySelector('.board-app__main');
+
+const newTaskContainer = document.querySelector('.add-task');
 
 const tasksBoardContainer = document.querySelector('.task-board');
 
@@ -23,7 +24,7 @@ function handleNewTaskButtonClick () {
     tasksBoardPresenter.createTask();
 }
 render(new HeaderComponent(), bodyContainer, RenderPosition.BEFOREBEGIN);
-render(newTaskFormComponent, mainContainer);
+render(newTaskFormComponent, newTaskContainer);
 
 tasksBoardPresenter.init();
 
