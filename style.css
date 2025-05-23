@@ -98,7 +98,7 @@ header {
     background-color: gainsboro;
     border-radius: 10px;
     height: 20px;
-    width: auto;
+    width: 90%;
     text-align: start;
     padding:10px 15px;
     margin-bottom: 10px;
@@ -117,7 +117,7 @@ header {
     font-size: 15px;
     font-weight: 300;
     height: 20px;
-    width: max-content;
+    width: 90%;
 }
 .footer {
     display:flex;
